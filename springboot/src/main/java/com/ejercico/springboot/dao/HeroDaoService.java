@@ -1,19 +1,20 @@
 package com.ejercico.springboot.dao;
 
 import com.ejercico.springboot.model.Hero;
+import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
+@Service
 public class HeroDaoService {
 
-    private static List<Hero> heroes= Arrays.asList(
-        new Hero(1,"Tony Stark", "Ironman", new Date()),
-        new Hero(2,"Peter Parker", "Spiderman", new Date()),
-        new Hero(3,"Bruce Banner", "Hulk", new Date())
-            );
+    private static List<Hero> heroes= new ArrayList();
+
+    static {
+            heroes.add(new Hero(1,"Tony Stark", "Ironman", new Date()));
+            heroes.add(new Hero(2,"Peter Parker", "Spiderman", new Date()));
+            heroes.add(new Hero(3,"Bruce Banner", "Hulk", new Date()));
+            }
 
     private static int counter = 3;
 
