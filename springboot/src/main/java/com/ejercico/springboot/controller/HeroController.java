@@ -40,4 +40,12 @@ public class HeroController {
         return ResponseEntity.created(location).build();
     }
 
+    @DeleteMapping("/hero/{id}")
+    public void deleteById(@PathVariable int id) {
+        Boolean result = heroDaoService.deleteHero(id);
+        if (result == null) {
+            throw new HeroNotFoundException("El heroe con id " + id + " no existe");
+        }
+    }
+
 }
