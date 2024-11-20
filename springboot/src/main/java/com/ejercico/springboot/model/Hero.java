@@ -1,12 +1,17 @@
 package com.ejercico.springboot.model;
 
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
+
 import java.util.Date;
 
 public class Hero {
 
     private int id;
+    @Size(min=3)
     private String name;
     private String heroName;
+    @Past
     private Date birthday;
 
 

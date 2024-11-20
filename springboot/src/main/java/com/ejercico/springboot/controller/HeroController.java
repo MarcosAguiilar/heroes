@@ -3,8 +3,10 @@ package com.ejercico.springboot.controller;
 import com.ejercico.springboot.dao.HeroDaoService;
 import com.ejercico.springboot.model.Hero;
 import com.ejercico.springboot.model.HeroNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -32,7 +34,7 @@ public class HeroController {
     }
 
     @PostMapping("/hero")
-    public ResponseEntity<Object> addHero(@RequestBody Hero hero) {
+    public ResponseEntity<Object> addHero(@RequestBody @Valid Hero hero) {
         Hero addHero = heroDaoService.addHero(hero);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(addHero.getId()).toUri();
