@@ -8,7 +8,7 @@ import java.util.Date;
 public class Hero {
 
     private int id;
-    @Size(min=3)
+    @Size(min=3, message = "El tamaño debe ser mayor que 2")
     private String name;
     private String heroName;
     @Past
