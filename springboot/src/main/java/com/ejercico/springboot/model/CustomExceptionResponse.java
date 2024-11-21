@@ -1,4 +1,4 @@
-package com.ejercico.springboot.exception;
+package com.ejercico.springboot.model;
 
 import java.util.Date;
 

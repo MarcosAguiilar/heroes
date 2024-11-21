@@ -1,18 +1,30 @@
 package com.ejercico.springboot.model;
 
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Size;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 import java.util.Date;
+import java.util.List;
 
+@Entity
 public class Hero {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Size(min=3, message = "El tamaño debe ser mayor que 2")
+    @NotNull(message = "First Name cannot be null")
     private String name;
+    @Column(name = "hero_name")
     private String heroName;
     @Past
+    @Temporal(TemporalType.DATE)
     private Date birthday;
+
+    @OneToMany(orphanRemoval = true, mappedBy = "hero", fetch = FetchType.LAZY)
+    private List<Power> powers;
 
 
     public Hero() {
@@ -55,5 +67,13 @@ public class Hero {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Power> getPowers() {
+        return powers;
+    }
+
+    public void setPowers(List<Power> powers) {
+        this.powers = powers;
     }
 }

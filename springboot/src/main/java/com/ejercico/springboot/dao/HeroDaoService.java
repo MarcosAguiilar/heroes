@@ -1,12 +1,15 @@
 package com.ejercico.springboot.dao;
 
 import com.ejercico.springboot.model.Hero;
+import com.ejercico.springboot.model.Power;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
-public class HeroDaoService {
+@Qualifier("dao")
+public class HeroDaoService implements HeroService{
 
     private static List<Hero> heroes= new ArrayList();
 
@@ -18,10 +21,12 @@ public class HeroDaoService {
 
     private static int counter = 3;
 
+    @Override
     public List<Hero> getAllHeroes(){
         return heroes;
     }
 
+    @Override
     public Hero getHeroById(int id){
         Hero hero = null;
         for(Hero h: heroes){
@@ -32,25 +37,45 @@ public class HeroDaoService {
         return hero;
     }
 
+    @Override
     public Hero addHero(Hero hero){
         hero.setId(++counter);
         heroes.add(hero);
         return hero;
     }
 
-    public Boolean deleteHero(int id){
+    @Override
+    public void deleteHero(int id){
         Iterator<Hero> iterator = heroes.iterator();
         Hero hero = null;
         do{
             hero = iterator.next();
             if(hero.getId() == id){
                 iterator.remove();
-                return true;
             }
         }while(iterator.hasNext());
-        return false;
+
     }
 
+    @Override
+    public List<Power> findAllPowersByHeroId(int id) {
+        return null;
+    }
+
+    @Override
+    public Power findPowerById(int heroId, int powerId) {
+        return null;
+    }
+
+    @Override
+    public Power addPower(int heroId, Power power) {
+        return null;
+    }
+
+    @Override
+    public void deletePower(int heroId, int powerId) {
+
+    }
 
 
 }
